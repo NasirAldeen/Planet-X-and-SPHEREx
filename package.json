@@ -1,0 +1,1 @@
+{"name":"planet-x-spherex","private":true,"type":"module","scripts":{"test":"node --test tests/frontend.test.mjs","check":"node --check public/app.js && node --check public/science.js"}}

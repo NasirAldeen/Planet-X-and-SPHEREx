@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080d16">
+  <meta name="description" content="Explore real NASA SPHEREx infrared images across time. Blink, compare and investigate the changing sky.">
+  <title>Planet X — SPHEREx Observatory</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#observatory">Skip to observatory</a>
+<header class="header shell">
+  <a class="brand" href="./" aria-label="Planet X home"><img src="icon.svg" alt="" width="38" height="38"><span>PLANET <b>X</b><small>SPHEREx OBSERVATORY</small></span></a>
+  <nav aria-label="Main navigation"><a class="active" href="#observatory">Observatory</a><a href="#guide">Field guide</a><a href="#mission">The mission <span aria-hidden="true">↗</span></a></nav>
+  <span class="mission-pill"><i></i> NASA SPACE APPS · 2026</span>
+</header>
+<main class="shell">
+  <section class="hero" aria-labelledby="hero-title">
+    <div><p class="eyebrow"><span class="line"></span> FIND WHAT CHANGES. DISCOVER WHAT’S NEXT.</p><h1 id="hero-title">The universe never<br><em>stands still.</em></h1><p class="intro">Same sky. Different moments. Explore the infrared universe<br class="desktop"> and look for the points of light that break the pattern.</p></div>
+    <div class="hero-fact"><span class="orbit-art" aria-hidden="true"><i></i><b>✦</b></span><p><strong>102</strong> infrared bands.<br><strong>One</strong> changing sky.</p><span class="micro">POWERED BY REAL SPHEREx DATA</span></div>
+  </section>
+
+  <section id="observatory" aria-label="Interactive SPHEREx observatory">
+    <div class="section-heading"><h2><span class="live-dot"></span> Your window into the sky</h2><span class="micro">01 / OBSERVATORY</span></div>
+    <div class="workspace">
+      <aside class="panel search-panel">
+        <div class="panel-heading"><h3>Choose a starting point</h3><span class="micro">5 TARGETS</span></div>
+        <p class="muted small">Real observations. A different story in every field.</p>
+        <div id="targets" class="targets" aria-label="Challenge test targets"></div>
+        <div class="divider"><span>OR EXPLORE YOUR COORDINATES</span></div>
+        <form id="search-form">
+          <label for="ra">Right ascension <span>deg / h:m:s</span></label><input id="ra" name="ra" value="269.446268" required placeholder="269.446268" autocomplete="off">
+          <label for="dec">Declination <span>deg / d:m:s</span></label><input id="dec" name="dec" value="4.768204" required placeholder="+4.768204" autocomplete="off">
+          <div class="form-row"><div><label for="fov">Field of view</label><select id="fov"><option value="2">2 arcmin</option><option value="4">4 arcmin</option><option value="6" selected>6 arcmin</option><option value="10">10 arcmin</option><option value="20">20 arcmin</option></select></div><div><label for="detector">Detector array</label><select id="detector"><option value="D1">D1 · 0.75–1.12 µm</option><option value="D2">D2 · 1.10–1.64 µm</option><option value="D3" selected>D3 · 1.63–2.44 µm</option><option value="D4">D4 · 2.40–3.86 µm</option><option value="D5">D5 · 3.81–4.43 µm</option><option value="D6">D6 · 4.41–5.01 µm</option></select></div></div>
+          <button id="search-button" class="primary" type="submit">Explore this sky <span aria-hidden="true">↗</span></button>
+          <p class="small muted">Live searches retrieve up to 18 exposures. New fields can take a few minutes.</p>
+        </form>
+      </aside>
+
+      <div class="panel viewer-panel">
+        <div class="viewer-heading"><div><p class="eyebrow">INFRARED TIME EXPLORER</p><h3 id="field-name">Loading the observatory…</h3></div><span id="data-badge" class="data-badge">IRSA / SPHEREx</span></div>
+        <div class="viewer-toolbar"><div class="mode-tabs" role="group" aria-label="Comparison mode"><button data-mode="blink" aria-pressed="true">Blink</button><button data-mode="split" aria-pressed="false">Split</button><button data-mode="difference" aria-pressed="false">Difference</button><button data-mode="stack" aria-pressed="false">Stack</button></div><button id="save-image" class="icon-button" title="Download displayed image" aria-label="Download displayed image">↓</button></div>
+        <div class="sky-stage" id="stage">
+          <div class="stage-corner top-left"><span id="frame-tag">REAL OBSERVATIONS</span><strong id="frame-date">—</strong></div>
+          <div class="stage-corner top-right"><span>WAVELENGTH</span><strong id="frame-wave">— µm</strong></div>
+          <canvas id="sky" width="600" height="600" role="img" aria-label="SPHEREx sky image, north up and east left"></canvas>
+          <div class="crosshair" aria-hidden="true"></div>
+          <div class="compass" aria-hidden="true"><span>N ↑</span><span>← E</span></div>
+          <div class="scale"><span id="scale-bar"></span><small id="scale-label">1 arcmin</small></div>
+          <div class="stage-caption" id="stage-caption">North up · East left · Shared brightness scale</div>
+          <div class="loading" id="loading"><span class="loader"></span><p id="loading-text">Opening real SPHEREx observations…</p></div>
+        </div>
+        <div id="split-control" class="split-control" hidden><label for="wipe">Reference / current image</label><input id="wipe" type="range" min="0" max="100" value="50"></div>
+        <div class="transport"><button id="prev" class="icon-button" aria-label="Previous frame">‹</button><button id="play" class="play-button" aria-label="Play time sequence">▶</button><button id="next" class="icon-button" aria-label="Next frame">›</button><div class="scrub"><label for="timeline" class="sr-only">Observation frame</label><input id="timeline" type="range" min="0" max="0" value="0"><div class="range-labels"><span id="first-date">—</span><span id="last-date">—</span></div></div><label class="speed-label" for="speed">Speed<select id="speed"><option value="1000">1 fps</option><option value="500" selected>2 fps</option><option value="250">4 fps</option></select></label></div>
+        <div id="filmstrip" class="filmstrip" aria-label="Observation thumbnails"></div>
+        <div class="viewer-footer"><span id="frame-counter">0 / 0 frames</span><span id="baseline">— day baseline</span><span>ICRS · WCS ALIGNED</span></div>
+      </div>
+
+      <aside class="panel inspector">
+        <div class="panel-heading"><h3>The observation desk</h3><span aria-hidden="true">⌖</span></div>
+        <div class="inspector-section"><p class="eyebrow">WHAT TO LOOK FOR</p><p id="target-hint">Watch for a point of light that changes position relative to the surrounding stars.</p></div>
+        <div class="inspector-section"><h4>Compare with care</h4><label class="check"><input id="match-wave" type="checkbox" checked><span>Match wavelengths <small>Within 5% of the reference</small></span></label><label for="reference">Reference observation</label><select id="reference" aria-label="Reference observation"></select><p id="wavelength-note" class="small muted">Measuring wavelength at the center of the field.</p></div>
+        <div class="inspector-section"><h4>Display settings</h4><label for="stretch">Contrast <output id="stretch-value">3.0</output></label><input id="stretch" type="range" min="1" max="8" step="0.5" value="3"><label class="check"><input id="show-grid" type="checkbox"><span>Coordinate grid</span></label><label class="check"><input id="invert" type="checkbox"><span>Invert sky colors</span></label></div>
+        <div class="inspector-section"><h4>Frame health <span id="health-dot" class="live-dot"></span></h4><dl><div><dt>Usable pixels</dt><dd id="usable">—</dd></div><div><dt>Detector</dt><dd id="frame-detector">—</dd></div><div><dt>Release</dt><dd id="release">—</dd></div><div><dt>Sampling</dt><dd id="sampling">—</dd></div></dl><p class="small muted">Flagged pixels appear dark. Interpolation, saturation and wavelength differences can create apparent changes.</p><a id="fits-link" class="text-link" target="_blank" rel="noopener">Open original FITS ↗</a></div>
+        <button id="share" class="secondary">Copy field link <span aria-hidden="true">↗</span></button><button id="export" class="text-button">Export observation metadata ↓</button>
+      </aside>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite">Preparing the observatory…</p>
+    <details class="provenance"><summary>Data provenance & processing notes <span>+</span></summary><p id="processing"></p><p id="coordinate-note"></p><p id="notices"></p><a href="https://irsa.ipac.caltech.edu/Missions/spherex.html" target="_blank" rel="noopener">NASA/IPAC Infrared Science Archive ↗</a></details>
+  </section>
+
+  <section class="guide" id="guide"><div class="section-heading"><h2>A little patience. A different universe.</h2><span class="micro">02 / FIELD GUIDE</span></div><div class="guide-grid"><article><span class="step">01 <span aria-hidden="true">⌖</span></span><h3>Pick your patch.</h3><p>Start with a featured target or enter any sky coordinates. Choose a field wide enough to follow the object over time.</p></article><article><span class="step">02 <span aria-hidden="true">▷</span></span><h3>Let time do the work.</h3><p>Play the observations or step through them. Background stars help you spot motion. Split, subtract or stack the images for another perspective.</p></article><article><span class="step">03 <span aria-hidden="true">✦</span></span><h3>Question the change.</h3><p>A changing point of light is a clue. Check wavelengths, masks and original data. A visual candidate is a starting point, never a confirmed discovery.</p></article></div></section>
+  <section class="mission-section" id="mission"><div><p class="eyebrow">A BILLION OBJECTS. COUNTLESS POSSIBILITIES.</p><h2>A new way to see<br>our infrared universe.</h2></div><div><p>This explorer turns SPHEREx observations into a window through time. Its six detector arrays cover 102 near-infrared spectral channels; a detector image samples a wavelength that varies across the field.</p><p class="muted">Built for NASA Space Apps 2026 · Planet X and SPHEREx. This independent project does not claim a discovery of Planet X or NASA endorsement.</p><a class="text-link" href="https://www.spaceappschallenge.org/2026/challenges/planet-x-and-spherex/" target="_blank" rel="noopener">Explore the challenge ↗</a></div></section>
+</main>
+<footer class="shell"><a class="footer-brand" href="./">PLANET X <span>/</span> SPHEREx</a><span>Keep looking. The sky is moving.</span><a href="https://github.com/NasirAldeen/Planet-X-and-SPHEREx" target="_blank" rel="noopener">Code & methodology ↗</a></footer>
+</body>
+</html>
