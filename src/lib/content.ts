@@ -70,7 +70,7 @@ export const COPY: Record<string, TargetCopy> = {
     lede: "A pulsating giant that swells and fades over roughly 246 days.",
     body: [
       "R Draconis is a long-period variable. SPHEREx revisits each patch of sky about every six months, which is close to its period, so sampling needs care.",
-      "The two original cutouts used in our paper have flagged pixels at the center of the star at both dates.",
+      "The two original cutouts examined in the first version of our report have flagged pixels at the center of the star at both dates.",
     ],
     caution: "Flagged central pixels mean these frames are a quality-control demonstration. They are not a validated brightness measurement.",
     refs: ["R05", "R06", "R17"],
@@ -81,12 +81,12 @@ export const COPY: Record<string, TargetCopy> = {
 export const GENERAL_REFS = ["R07", "R08", "R09", "R15", "R16"];
 
 export const FIGURES = [
-  { file: "fig01_motion_scale.png", title: "How far each moving benchmark travels in half a year, compared with one SPHEREx pixel" },
-  { file: "fig03_wise_positions.png", title: "Historical positions of WISE 0855 from published astrometry" },
-  { file: "fig04_rw_aur_dimming.png", title: "RW Aurigae A brightness change derived from published flux ratios" },
-  { file: "fig05_r_dra_cadence.png", title: "How a 246-day period is sampled by a six-month survey cadence" },
-  { file: "fig06_spherex_r_dra.png", title: "Two original SPHEREx cutouts of R Draconis, with quality flags" },
-  { file: "fig07_workflow.png", title: "From archive query to a displayed frame" },
+  { file: "fig01_how_it_works.png", title: "How the tool operates: real exposures, a quality screen, then separate time and wavelength views" },
+  { file: "fig02_wavelength_view.png", title: "Wavelength view: three of the 102 channels of the Barnard's Star field mosaic. The mosaic has no observing date" },
+  { file: "fig03_time_view.png", title: "Time view: the WISE 0855 field on three real dates with one shared brightness scale. The orange marks show the requested coordinate, not a detection" },
+  { file: "fig04_quality_screen.png", title: "Quality screen: the centres of the RW Aurigae and R Draconis fields fall on rejected pixels on every date" },
+  { file: "fig05_mosaic_centre.png", title: "The centre pixel of each mosaic, channel by channel" },
+  { file: "fig01_motion_scale.png", title: "Calculated half-year shift from published proper motion, compared with one SPHEREx pixel" },
 ];
 
 /** Constellation containing each target, computed with astropy's get_constellation. */

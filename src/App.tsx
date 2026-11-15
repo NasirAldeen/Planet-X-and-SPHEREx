@@ -396,7 +396,7 @@ function Overview({ targets, seqs }: { targets: Target[]; seqs: Record<string, S
         </p>
       )}
       <p className="body muted">
-        Half-year motion of the fast movers is smaller than one pixel, so what you see is subtle by design. The paper in Documents explains what can and cannot be concluded.
+        Half-year motion of the fast movers is smaller than one pixel, so what you see is subtle by design. The report in Documents explains what can and cannot be concluded.
       </p>
     </>
   );

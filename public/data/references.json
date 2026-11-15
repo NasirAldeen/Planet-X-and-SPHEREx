@@ -258,5 +258,18 @@
   "summary": "The policy generally permits reuse of public JPL imagery with attribution, subject to its exceptions. It requires appropriate credit and does not allow implied NASA, JPL or Caltech endorsement.",
   "use": "Attribution basis for educational reproduction of Figure 2. The image-specific credit is preserved.",
   "limits": "No blanket relicensing of source figures or logos. Third-party restrictions and image-specific notices remain applicable. Saved record is a local policy review note, not the raw webpage; direct HTML download returned 403."
+ },
+ {
+  "id": "R21",
+  "origin": "Official mission data documentation",
+  "title": "SPHEREx Data Explorer: Mosaic Tool",
+  "authors": "NASA/IPAC Infrared Science Archive",
+  "year": 2026,
+  "venue": "Online help page, read 15 November 2026",
+  "doi": null,
+  "url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/mosaic.html",
+  "summary": "Describes how the archive builds a mosaic cube from many spectral images, with one plane per spectral channel and IMAGE, NHITS and FLAGS extensions.",
+  "use": "Explains the 102-channel mosaics used for the wavelength view in the report.",
+  "limits": "Gives no guidance on using mosaics to study change over time. Mosaic fluxes need not match fluxes in single exposures."
  }
 ]

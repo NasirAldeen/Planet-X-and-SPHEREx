@@ -25,7 +25,7 @@ Open the address Vite prints (by default http://localhost:5173). `npm run build`
   - **Change** subtracts the first frame and warns when the two frames differ in wavelength.
   - **Stack** averages every frame, skipping flagged pixels.
   - **Project +1 year** draws where catalogue motion would carry a moving target. It is labelled as a projection and never shows invented pixels.
-- **Documents.** The project's research paper, its figures and its 20 references.
+- **Documents.** The project report, its figures and its references.
 - **Links.** `?target=wise-0855` opens a target directly. `?ra=133.79&dec=-7.24` pins a position (no images are loaded for arbitrary positions yet).
 
 ## What is real and what is not
@@ -38,7 +38,7 @@ Open the address Vite prints (by default http://localhost:5173). `npm run build`
 | Milky Way band | Generated points placed along the real galactic plane. Not a photograph |
 | Grey dust, dotted lines, ship, tunnel | Decoration |
 
-Frames are quick-look displays, not calibrated photometry. This project claims no new planet, no measured motion and no measured brightness change. See `public/docs/SPHEREx_Research_Paper.pdf` for the limits.
+Frames are quick-look displays, not calibrated photometry. This project claims no new planet, no measured motion and no measured brightness change. See `public/docs/SPHEREx_Project_Report_Revised.pdf` for the limits.
 
 ## Not built yet
 
