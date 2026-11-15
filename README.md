@@ -38,7 +38,7 @@ Open the address Vite prints (by default http://localhost:5173). `npm run build`
 | Milky Way band | Generated points placed along the real galactic plane. Not a photograph |
 | Grey dust, dotted lines, ship, tunnel | Decoration |
 
-Frames are quick-look displays, not calibrated photometry. This project claims no new planet, no measured motion and no measured brightness change. See `public/docs/SPHEREx_Project_Report_Revised.pdf` for the limits.
+Frames are quick-look displays, not calibrated photometry. This project claims no new planet, no measured motion and no measured brightness change. See `public/docs/SPHEREx_ProjectReport.pdf` for the limits.
 
 ## Not built yet
 

@@ -44,7 +44,7 @@ export default function Documents({ refs, onClose }: { refs: Reference[]; onClos
           The project report behind this tool: what it does, the real archive data it was tested on, and one quality check that changes what a user should conclude.
         </p>
         <p className="links">
-          <a href="/docs/SPHEREx_Project_Report_Revised.pdf" target="_blank" rel="noreferrer">
+          <a href="/docs/SPHEREx_ProjectReport.pdf" target="_blank" rel="noreferrer">
             <FileText size={16} aria-hidden="true" /> Read the full report (PDF, 14 pages)
           </a>
         </p>

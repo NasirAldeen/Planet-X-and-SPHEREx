@@ -4,7 +4,8 @@ Revision of the Planet X and SPHEREx project report, dated 15 November 2026.
 
 ## Files
 
-- `SPHEREx_Project_Report_Revised.pdf`: the typeset report (14 pages).
+- `SPHEREx_ProjectReport.pdf`: the final report, as edited by the team (14 pages). This is the version the site serves.
+- `SPHEREx_Project_Report_Revised.pdf`: the draft before the team's final wording edits. The Word, Markdown and HTML files below match this draft.
 - `SPHEREx_Project_Report_Revised.docx`: editable Word version.
 - `SPHEREx_Project_Report_Revised.md`: editable source. The PDF, HTML and Word files are built from it.
 - `SPHEREx_Project_Report_Revised.html`: browser version.
