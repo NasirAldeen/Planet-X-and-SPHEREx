@@ -181,6 +181,15 @@ h1, h2, h3 { line-height: 1.15; font-weight: 600; }
 .tech summary { cursor: pointer; color: var(--text-muted); }
 .tech[open] summary { margin-bottom: var(--space-2); }
 
+/* ---------- expandable images ---------- */
+.zoomable { display: block; width: 100%; padding: 0; cursor: zoom-in; border-radius: var(--radius-sm); }
+.zoomable:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.lightbox { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-8) var(--space-4) var(--space-4); background: rgba(3, 5, 12, 0.94); cursor: zoom-out; }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 10rem); object-fit: contain; background: #fff; border-radius: var(--radius-sm); cursor: default; }
+.lightbox p { max-width: 46rem; text-align: center; font-size: var(--text-sm); color: var(--text-muted); cursor: default; }
+.lightbox__close { position: absolute; top: var(--space-3); right: var(--space-4); display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-raised); color: var(--text); font-size: var(--text-sm); }
+.lightbox__close:hover { border-color: var(--primary); }
+
 /* ---------- player ---------- */
 .player { margin: var(--space-3) 0; }
 .screen { position: relative; aspect-ratio: 1; width: 100%; background: #000; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }

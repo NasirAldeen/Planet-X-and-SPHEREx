@@ -58,3 +58,10 @@ The MIT licence in `LICENSE` covers the original source code in this repository.
 - Research papers summarised in `public/data/references.json` remain under their authors' and publishers' rights.
 
 No NASA endorsement is implied.
+
+## Also in this repository
+
+- `report/`: the revised project report as PDF, Word and Markdown, the first version (`report/original/`), and the scripts and verification data behind its figures. The same PDF is served by the site from `public/docs/`.
+- `media/SPHEREx_Voyage_Teaser.mp4`: a 30-second teaser video with sound. `media/make_teaser.py` is the script that drew it. The galaxy and the route in the video are artistic.
+
+The SPHEREx image archive used by the report (about 106 MB of FITS files from NASA/IPAC IRSA) and the third-party research papers are not included here. The report lists the source link and checksum record for every file.

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ExternalLink, FileText, X } from "lucide-react";
 import { FIGURES } from "../lib/content";
+import Zoomable from "./Zoomable";
 
 export type Reference = {
   id: string;
@@ -66,7 +67,7 @@ export default function Documents({ refs, onClose }: { refs: Reference[]; onClos
         <div className="figs">
           {FIGURES.map((f) => (
             <figure key={f.file}>
-              <img src={`/docs/figures/${f.file}`} alt={f.title} loading="lazy" />
+              <Zoomable src={`/docs/figures/${f.file}`} alt={f.title} caption={f.title} />
               <figcaption>{f.title}</figcaption>
             </figure>
           ))}

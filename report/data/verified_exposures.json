@@ -1,0 +1,64 @@
+[
+  {
+    "file": "sources\\R_Dra_epoch_1.fits",
+    "obs_id": "2025W20_2D_0243_1",
+    "date_obs_utc": "2025-05-16T22:56:23.637",
+    "mjd_start": 60811.955829132,
+    "mjd_mid": 60811.956495321,
+    "mjd_end": 60811.95716151,
+    "detector": 3,
+    "wavelength_um_visualization": 1.6553021560017487,
+    "bandwidth_um_visualization": 0.039528058253263665,
+    "wcs_wave_accuracy_note": "Visualization approximation, about 1 nm per archive documentation",
+    "psf_fwhm_header_arcsec": 7.448130062949859,
+    "bunit": "MJy / sr",
+    "field_ra_deg": 248.16723307211961,
+    "field_dec_deg": 66.75502382621285,
+    "shape": [
+      60,
+      60
+    ],
+    "pixel_scale_arcsec": 6.15,
+    "valid_fraction": 0.9327777777777778,
+    "sky_median_removed_MJy_sr": 1.575969807797866,
+    "center_flags_integer": 69206022,
+    "center_flag_bits": [
+      1,
+      2,
+      21,
+      26
+    ],
+    "display_processing": "IMAGE minus ZODI; conservative flag mask except SOURCE bit21 and FULLSAMPLE bit12; TAN/SIP WCS bilinear registration on north-up east-left TAN grid; require all contributing pixels valid; annular median sky at 50 to 150 arcsec subtracted; common asinh display; no PSF matching or flux measurement"
+  },
+  {
+    "file": "sources\\R_Dra_epoch_2.fits",
+    "obs_id": "2026W19_1A_0842_1",
+    "date_obs_utc": "2026-05-06T06:04:36.596",
+    "mjd_start": 61166.253201343,
+    "mjd_mid": 61166.253867532,
+    "mjd_end": 61166.254533721,
+    "detector": 3,
+    "wavelength_um_visualization": 1.6552402345507558,
+    "bandwidth_um_visualization": 0.03952637205588672,
+    "wcs_wave_accuracy_note": "Visualization approximation, about 1 nm per archive documentation",
+    "psf_fwhm_header_arcsec": 7.448130062949859,
+    "bunit": "MJy / sr",
+    "field_ra_deg": 248.16723307211961,
+    "field_dec_deg": 66.75502382621285,
+    "shape": [
+      60,
+      60
+    ],
+    "pixel_scale_arcsec": 6.15,
+    "valid_fraction": 0.9583333333333334,
+    "sky_median_removed_MJy_sr": 1.2499770454532264,
+    "center_flags_integer": 69206022,
+    "center_flag_bits": [
+      1,
+      2,
+      21,
+      26
+    ],
+    "display_processing": "IMAGE minus ZODI; conservative flag mask except SOURCE bit21 and FULLSAMPLE bit12; TAN/SIP WCS bilinear registration on north-up east-left TAN grid; require all contributing pixels valid; annular median sky at 50 to 150 arcsec subtracted; common asinh display; no PSF matching or flux measurement"
+  }
+]

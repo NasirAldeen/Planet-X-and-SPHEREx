@@ -6,6 +6,7 @@ import Chase from "./components/Chase";
 import Warp from "./components/Warp";
 import SkyMap, { type View } from "./components/SkyMap";
 import FramePlayer from "./components/FramePlayer";
+import Zoomable from "./components/Zoomable";
 import Documents, { useReferences } from "./components/Documents";
 import { CONSTELLATION, COPY } from "./lib/content";
 import { fmtDate, mjdToDate, type Sequence, type Target } from "./lib/sky";
@@ -448,7 +449,7 @@ function TargetPanel({ target, seq, refs, openDocs }: { target: Target; seq?: Se
       ))}
       {copy?.context && (
         <figure className="context">
-          <img src={copy.context.src} alt={copy.context.alt} loading="lazy" />
+          <Zoomable src={copy.context.src} alt={copy.context.alt} />
           <figcaption>{copy.context.caption}</figcaption>
         </figure>
       )}
@@ -457,16 +458,12 @@ function TargetPanel({ target, seq, refs, openDocs }: { target: Target; seq?: Se
         <div className="gallery">
           <h3 className="mono">MORE VIEWS OF THIS FIELD</h3>
           <figure>
-            <a href={`/gallery/${target.id}/wavelengths.png`} target="_blank" rel="noreferrer">
-              <img src={`/gallery/${target.id}/wavelengths.png`} alt={`${target.name} field at 1.25, 2.19 and 4.60 micrometres`} loading="lazy" />
-            </a>
+            <Zoomable src={`/gallery/${target.id}/wavelengths.png`} alt={`${target.name} field at 1.25, 2.19 and 4.60 micrometres`} />
             <figcaption>The same field in three infrared colours (1.25, 2.19 and 4.60 µm), from the SPHEREx mosaic. A wider 15′ view, combined over time, so it has no single date.</figcaption>
           </figure>
           <figure>
-            <a href={`/gallery/${target.id}/dates.png`} target="_blank" rel="noreferrer">
-              <img src={`/gallery/${target.id}/dates.png`} alt={`${target.name} field on three observation dates`} loading="lazy" />
-            </a>
-            <figcaption>Three separate observation dates chosen at closely matched wavelengths. Select an image to open it full size. Target identification in these previews has not been validated.</figcaption>
+            <Zoomable src={`/gallery/${target.id}/dates.png`} alt={`${target.name} field on three observation dates`} />
+            <figcaption>Three separate observation dates chosen at closely matched wavelengths. Select an image to enlarge it. Target identification in these previews has not been validated.</figcaption>
           </figure>
         </div>
       )}
