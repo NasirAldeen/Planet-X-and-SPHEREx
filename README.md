@@ -1,110 +1,60 @@
-# Planet X · SPHEREx Observatory
+# SPHEREx Voyage
 
-A sky explorer for **NASA Space Apps 2026 — Planet X and SPHEREx**. Enter celestial
-coordinates, play real infrared observations through time, and investigate
-changes with aligned images and visible data-quality information.
+A sky explorer for **NASA Space Apps 2026: Planet X and SPHEREx**. Launch from the first page, travel at light speed, and arrive at a 3D map of the sky. Pick one of five benchmark objects and replay real SPHEREx infrared observations of it through time.
 
-**All displayed sky pixels originate in real SPHEREx FITS cutouts from NASA/IPAC
-IRSA.** The five featured targets use bundled observations. Arbitrary coordinates
-use the included Python archive server. No NASA API key is needed.
+The five targets are Barnard's Star, Epsilon Indi B, WISE 0855, RW Aurigae and R Draconis.
 
-## Run on Windows
+## Run it
 
-Python **3.14** is required for the pinned dependencies. From this repository:
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe server.py
-```
-
-Open **http://127.0.0.1:8000**. Press Ctrl+C to stop. Once installed, `./run.ps1`
-starts the application again. On macOS/Linux use `python3.14 -m venv .venv`, then
-`.venv/bin/python` in place of `.\.venv\Scripts\python.exe`.
-
-The frontend uses plain HTML/CSS/JavaScript, with no build step or installation.
-Node.js 24 is used only for tests. Serve through HTTP; opening `index.html` as a
-local file does not support data loading.
-
-## Features
-
-- Five real target sequences: **Barnard’s Star**, **Epsilon Indi B**, **WISE 0855**,
-  **RW Aurigae**, and **R Draconis**.
-- Playback, pause, scrubbing, thumbnails and keyboard controls: **← / →** and **Space**.
-- Blink, adjustable split, signed difference, and mask-aware mean stacking.
-- Reference selection and center-wavelength matching within **5%**.
-- Decimal-degree and sexagesimal coordinates, fields **2–20 arcmin**, and all six arrays.
-- Dates, source FITS, wavelengths, release, pixel coverage, flags and processing metadata.
-- Shareable field links, PNG export and downloadable observation metadata.
-
-Example field link:
-
-```text
-http://127.0.0.1:8000/?ra=133.79512916666667&dec=-7.245147222222222&fov=6&detector=D6&target=wise-0855#observatory
-```
-
-The array selector is not a claim that each exposure includes all 102 channels.
-The actual wavelength varies with position and is read from the FITS spectral WCS.
-
-## Public hosting
-
-Use the included Dockerfile or import this repository into Render using
-`render.yaml`. A hosting account may be needed; check current provider terms and
-resource limits. **A Git push alone does not publish the Python backend.**
+Node.js 20 or newer is required.
 
 ```sh
-docker build -t planet-x-spherex .
-docker run --rm -p 8000:8000 planet-x-spherex
+npm install
+npm run dev
 ```
 
-The server uses Waitress, listens on `127.0.0.1:8000` locally, and accepts `HOST`
-and `PORT` when deployed. Use HTTPS/reverse proxy and platform traffic controls
-for a public launch. Live archive work has bounded concurrency and a basic per-IP
-limit. Static hosting of `public/` supports bundled demos; arbitrary coordinates
-require the Python server, which the interface explains if unavailable.
+Open the address Vite prints (by default http://localhost:5173). `npm run build` type-checks and writes a static site to `dist/`.
 
-## Update observations
+## What it does
 
-```powershell
-.\.venv\Scripts\python.exe scripts/resolve_targets.py
-.\.venv\Scripts\python.exe scripts/build_samples.py --refresh --limit 18
-.\.venv\Scripts\python.exe scripts/validate_samples.py
-```
+- **Launch sequence.** A third-person chase view of the ship with a countdown, then a light-speed tunnel. "Return to launch" plays the journey in reverse.
+- **Globe view.** The targets sit at their real right ascension and declination. Drag to look around.
+- **Reference view.** "Step back" pulls the camera outside the sky sphere for a wide shot with the Milky Way band.
+- **Frame player.** Plays each target's SPHEREx cutouts in date order on a timeline that keeps the real gaps between observations.
+  - **Rewind and play** step through real frames only.
+  - **Change** subtracts the first frame and warns when the two frames differ in wavelength.
+  - **Stack** averages every frame, skipping flagged pixels.
+  - **Project +1 year** draws where catalogue motion would carry a moving target. It is labelled as a projection and never shows invented pixels.
+- **Documents.** The project's research paper, its figures and its 20 references.
+- **Links.** `?target=wise-0855` opens a target directly. `?ra=133.79&dec=-7.24` pins a position (no images are loaded for arbitrary positions yet).
 
-Use `--target barnard` (or `epsilon-indi`, `wise-0855`, `rw-aurigae`, `r-draconis`)
-to rebuild one target. Ignored `.cache/` holds downloaded cutouts. `--refresh`
-refreshes metadata; immutable cutouts are reused. Configure future release names
-in `COLLECTIONS` in `planetx/archive.py`; current releases are DR1 and QR3.
-Live searches refresh metadata and sample up to 18 exposures over the available
-baseline. This is a quick-look subset, not an exhaustive archive search.
+## What is real and what is not
 
-## Test
+| Item | Source |
+| --- | --- |
+| Sky frames in the player | Original SPHEREx spectral-image cutouts (DR1 and QR3) from NASA/IPAC IRSA |
+| "More views of this field" images | Previews rendered from SPHEREx mosaics and dated cutouts retrieved from IRSA |
+| WISE 0855 context image | NASA/JPL PIA18002, credit NASA/JPL-Caltech/Penn State University. Not a SPHEREx image |
+| Milky Way band | Generated points placed along the real galactic plane. Not a photograph |
+| Grey dust, dotted lines, ship, tunnel | Decoration |
 
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-node --test tests/frontend.test.mjs
-node --check public/app.js
-.\.venv\Scripts\python.exe scripts/validate_samples.py
-```
+Frames are quick-look displays, not calibrated photometry. This project claims no new planet, no measured motion and no measured brightness change. See `public/docs/SPHEREx_Research_Paper.pdf` for the limits.
 
-Tests cover coordinates, alignment across orientations, quality masks, SIA column
-parsing, spectral matching, masked arithmetic, API validation, rate limits,
-static-file confinement and sharing. The sample validator generates
-[docs/VALIDATION.md](docs/VALIDATION.md). CI repeats these checks on pushes and PRs.
-Browser visual QA could not be completed because session browser automation
-could not verify the current URL. Docker/Render deployment has not been verified.
-The [real-data inspection sheet](docs/target-preview.png) shows the first and last
-wavelength-matched images for each required field; it is not a browser screenshot.
+## Not built yet
 
-## Methodology, credits and submission
+Live archive queries for arbitrary coordinates, a field-of-view selector, per-detector stacking, spectra, Gaia and WISE overlays, and decoded contamination flags.
 
-Read [science and limitations](docs/SCIENCE.md), [data/software sources](docs/SOURCES.md),
-and the [demo and submission guide](docs/SUBMISSION.md).
+## Earlier version
 
-OpenAI Codex assisted with implementation, documentation and tests. No AI-generated
-sky images, detections, spectra or measurements are presented as observations.
-Synthetic arrays are used only in alignment tests. The team should review the
-work and competition disclosure requirements before submitting.
+The previous Python and plain-JavaScript observatory is preserved in this repository's git history (commit `7587518`).
 
-Original code is MIT licensed; data and dependencies retain their own terms.
-This independent project is not a NASA product and claims no discovery of Planet X.
+## Licence and credits
+
+The MIT licence in `LICENSE` covers the original source code in this repository. It does not cover third-party material:
+
+- SPHEREx data: NASA/JPL-Caltech, served by the NASA/IPAC Infrared Science Archive.
+- `public/docs/PIA18002.jpg`: NASA/JPL-Caltech/Penn State University, used under the JPL image use policy.
+- The light-speed fragment shader in `src/components/Warp.tsx` is by Matthias Hurrle (@atzedent), taken from the "light-speed" component on 21st.dev, where its licence is listed as unknown. Confirm the licence or replace the shader before reusing it.
+- Research papers summarised in `public/data/references.json` remain under their authors' and publishers' rights.
+
+No NASA endorsement is implied.

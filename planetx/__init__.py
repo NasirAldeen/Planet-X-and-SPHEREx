@@ -1,1 +1,0 @@
-"""SPHEREx time-domain explorer."""
